@@ -1,9 +1,13 @@
-// src/index.ts
+// src/app.ts
 
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
+import protectedRoutes from "./routes/someProtectedRoute"; // Protected routes (authentication & role-based)
+import profileRoutes from "./routes/profile"; // User management / profile endpoints
+import threadRoutes from "./routes/Threads"; // Forum threads endpoints
+import postRoutes from "./routes/Post"; // Forum posts endpoints
 
 dotenv.config();
 
@@ -16,7 +20,7 @@ app.use(express.json());
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI as string, {
-    // Options can go here if needed
+    // Additional options if needed
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
@@ -26,8 +30,20 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to CoSprout Backend :)");
 });
 
-// Import routes
+// Public routes: authentication endpoints
 app.use("/api/auth", authRoutes);
+
+// Protected routes: routes that require a valid token and proper role-based authorization
+app.use("/api/protected", protectedRoutes);
+
+// Profile endpoints: user management endpoints (protected by auth middleware)
+app.use("/api/profile", profileRoutes);
+
+// Forum endpoints:
+// - Threads: For creating and listing discussion threads
+app.use("/api/threads", threadRoutes);
+// - Posts: For creating and listing posts (replies) in threads
+app.use("/api/posts", postRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

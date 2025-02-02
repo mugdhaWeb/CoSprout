@@ -6,19 +6,24 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-interface AuthRequest extends Request {
+export interface AuthRequest extends Request {
   user?: any;
 }
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export default function (req: AuthRequest, res: Response, next: NextFunction) {
+export default function auth(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+): void {
   // Get token from header
   const token = req.header("x-auth-token");
 
   // Check if not token
   if (!token) {
-    return res.status(401).json({ message: "No token, authorization denied." });
+    res.status(401).json({ message: "No token, authorization denied." });
+    return; // Explicitly return nothing
   }
 
   try {
@@ -27,5 +32,6 @@ export default function (req: AuthRequest, res: Response, next: NextFunction) {
     next();
   } catch (err) {
     res.status(401).json({ message: "Token is not valid." });
+    return;
   }
 }
