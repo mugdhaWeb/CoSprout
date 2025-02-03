@@ -1,4 +1,4 @@
-// src/models/Thread.ts
+// src/models/Threads.ts
 import mongoose, { Schema, Document } from "mongoose";
 import { IUser } from "./User";
 

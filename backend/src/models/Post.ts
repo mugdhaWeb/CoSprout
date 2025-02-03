@@ -1,12 +1,11 @@
 // src/models/Post.ts
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 import { IUser } from "./User";
-import { IThread } from "./Thread";
 
 export interface IPost extends Document {
-  thread: IThread["_id"];
+  thread: Types.ObjectId; // or string if you prefer
   content: string;
-  createdBy: IUser["_id"];
+  createdBy: Types.ObjectId; // specify that it's an ObjectId
   createdAt: Date;
   updatedAt: Date;
 }

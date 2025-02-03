@@ -6,8 +6,8 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
 import protectedRoutes from "./routes/someProtectedRoute"; // Protected routes (authentication & role-based)
 import profileRoutes from "./routes/profile"; // User management / profile endpoints
-import threadRoutes from "./routes/Threads"; // Forum threads endpoints
-import postRoutes from "./routes/Post"; // Forum posts endpoints
+import threadRoutes from "./routes/Threads"; // Forum Threads endpoints
+import postRoutes from "./routes/posts"; // Forum posts endpoints
 
 dotenv.config();
 
