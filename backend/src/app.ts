@@ -1,6 +1,7 @@
 // src/app.ts
 
 import express, { Request, Response } from "express";
+import cors from "cors"; // Import the cors package
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
@@ -12,6 +13,8 @@ import postRoutes from "./routes/posts"; // Forum posts endpoints
 dotenv.config();
 
 const app = express();
+app.use(cors());
+
 const PORT = process.env.PORT || 5001;
 
 // Middleware to parse JSON
@@ -19,15 +22,15 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI as string, {
-    // Additional options if needed
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+    .connect(process.env.MONGO_URI as string, {
+        // Additional options if needed
+    })
+    .then(() => console.log("MongoDB connected"))
+    .catch((err) => console.error("MongoDB connection error:", err));
 
 // A simple route for testing
 app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to CoSprout Backend :)");
+    res.send("Welcome to CoSprout Backend :)");
 });
 
 // Public routes: authentication endpoints
@@ -46,5 +49,5 @@ app.use("/api/threads", threadRoutes);
 app.use("/api/posts", postRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
