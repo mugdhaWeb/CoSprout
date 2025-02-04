@@ -8,6 +8,7 @@ import protectedRoutes from "./routes/someProtectedRoute"; // Protected routes (
 import profileRoutes from "./routes/profile"; // User management / profile endpoints
 import threadRoutes from "./routes/Threads"; // Forum Threads endpoints
 import postRoutes from "./routes/posts"; // Forum posts endpoints
+import cors from "cors"; // <-- Import cors middleware
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ const PORT = process.env.PORT || 5001;
 
 // Middleware to parse JSON
 app.use(express.json());
-
+app.use(cors());
 // Connect to MongoDB
 mongoose
     .connect(process.env.MONGO_URI as string, {

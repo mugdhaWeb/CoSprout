@@ -19,7 +19,7 @@ export async function sendVerificationEmail(
         debug: true,
     });
 
-    const verificationUrl = `${process.env.BASE_URL}/api/auth/verify-email?token=${token}`;
+    const verificationUrl = `${process.env.BASE_URL}api/auth/verify-email?token=${token}`;
 
     const mailOptions = {
         from: process.env.EMAIL_FROM, // sender address
