@@ -19,15 +19,15 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI as string, {
-    // Additional options if needed
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+    .connect(process.env.MONGO_URI as string, {
+        // Additional options if needed
+    })
+    .then(() => console.log("MongoDB connected"))
+    .catch((err) => console.error("MongoDB connection error:", err));
 
 // A simple route for testing
 app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to CoSprout Backend :)");
+    res.send("Welcome to CoSprout Backend :)");
 });
 
 // Public routes: authentication endpoints
@@ -46,5 +46,5 @@ app.use("/api/threads", threadRoutes);
 app.use("/api/posts", postRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
