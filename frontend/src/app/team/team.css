@@ -1,0 +1,86 @@
+/* Team page animations and styles */
+
+/* Make cards in the same row equal height */
+.grid-row-matching-height {
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+
+.grid-row-matching-height > * {
+  height: 100%;
+}
+
+.team-card-container {
+  height: 100%;
+  display: flex;
+}
+
+.team-card {
+  transition: all 0.3s ease;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Card content with consistent min-height for collapsed state */
+.card-content {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-main-info {
+  flex-grow: 1;
+}
+
+.card-expand-button {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Social icons animation */
+.social-icon {
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Card expand animation */
+@keyframes expandCard {
+  from { 
+    max-height: 300px;
+    opacity: 0;
+  }
+  to { 
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+.card-expand {
+  animation: expandCard 0.4s ease forwards;
+}
+
+/* Staggered entrance animation for team members */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
