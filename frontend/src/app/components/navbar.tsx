@@ -43,7 +43,7 @@ export default function Navbar() {
             <a href="/about" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/about'); }}>About</a>
             <a href="/team" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/team'); }}>Team</a>
             <a href="/impact" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/impact'); }}>Impact</a>
-            <a href="#" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">Resources</a>
+            <a href="/resources" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/resources'); }}>Resources</a>
             <a href="#" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">Contact</a>
 
             <div className="w-px h-5 bg-black/20"></div>
@@ -70,7 +70,7 @@ export default function Navbar() {
             <a href="/about" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/about'); setShowMobileMenu(false); }}>About</a>
             <a href="/team" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/team'); setShowMobileMenu(false); }}>Team</a>
             <a href="/impact" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/impact'); setShowMobileMenu(false); }}>Impact</a>
-            <a href="#" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={() => setShowMobileMenu(false)}>Resources</a>
+            <a href="/resources" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/resources'); setShowMobileMenu(false); }}>Resources</a>
             <a href="#" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={() => setShowMobileMenu(false)}>Contact</a>
             <div className="w-full h-px bg-gray-200 my-2"></div>
             <a href="#" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={() => setShowMobileMenu(false)}>Log in</a>
