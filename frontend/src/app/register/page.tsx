@@ -28,7 +28,7 @@ export default function Register() {
   };
 
   return (
-    <main className="bg-gradient-to-b from-green-100 to-green-200 min-h-screen overflow-x-hidden">
+    <main className="bg-gradient-to-b from-green-100 to-green-200 min-h-screen flex flex-col overflow-hidden">
       <Navbar />
       
       <div className="abstract-shapes">
@@ -37,7 +37,7 @@ export default function Register() {
         <div className="shape shape-3"></div>
       </div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 flex-grow flex flex-col justify-center">
         <section className="text-center mb-12">
           <motion.h1 
             className="text-4xl font-bold text-black sm:text-6xl mb-6"

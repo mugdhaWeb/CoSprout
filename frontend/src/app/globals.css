@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply these styles to all pages */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Make Next.js page wrapper use full height */
+html body > div#__next,
+html body > div#__next > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure all main content areas take up at least the full viewport height */
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+}
+
+/* For mobile devices, properly handle viewport height */
+@media (max-width: 768px) {
+  main {
+    min-height: -webkit-fill-available;
+  }
+}
+
 html {
   --scroll-behavior: smooth!important;
   scroll-behavior: smooth!important;
