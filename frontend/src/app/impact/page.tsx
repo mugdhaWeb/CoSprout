@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/app/components/navbar';
 import Link from 'next/link';
 import './impact.css';
@@ -60,13 +60,14 @@ const testimonials = [
 export default function Impact() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   
-  const nextTestimonial = () => {
-    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-  
-  const prevTestimonial = () => {
-    setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  // Add useEffect for automatic rotation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000); // Change testimonial every 5 seconds
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, []);
 
   return (
     <main className="bg-gradient-to-b from-green-100 to-green-200 min-h-screen overflow-x-hidden">
@@ -166,18 +167,16 @@ export default function Impact() {
             <div className="overflow-hidden">
               <motion.div
                 key={activeTestimonial}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
                 className="bg-white rounded-xl p-8 md:p-12 shadow-md mb-6"
               >
-                <div className="testimonial-quote-mark text-green-300 opacity-30">&quot;</div>
                 <blockquote className="text-xl md:text-2xl font-medium text-gray-700 mb-6 relative z-10">
                   {testimonials[activeTestimonial].quote}
                 </blockquote>
                 <div className="flex items-center">
-                  <div className="testimonial-avatar bg-gradient-to-r from-teal-400 to-green-300 rounded-full"></div>
                   <div className="ml-4">
                     <h4 className="text-lg font-bold text-gray-900">{testimonials[activeTestimonial].name}</h4>
                     <p className="text-teal-600">{testimonials[activeTestimonial].school} &apos;{testimonials[activeTestimonial].year}</p>
@@ -187,34 +186,14 @@ export default function Impact() {
             </div>
             
             <div className="flex justify-center gap-2 mt-8">
-              <button 
-                onClick={prevTestimonial}
-                className="bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-teal-600">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
               {testimonials.map((_, index) => (
-                <button
+                <div
                   key={index}
-                  onClick={() => setActiveTestimonial(index)}
-                  className={`rounded-full w-3 h-3 ${activeTestimonial === index ? 'bg-teal-600' : 'bg-gray-300'}`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                ></button>
+                  className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                    index === activeTestimonial ? 'bg-teal-600' : 'bg-gray-300'
+                  }`}
+                />
               ))}
-              
-              <button 
-                onClick={nextTestimonial}
-                className="bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-teal-600">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
             </div>
           </div>
         </section>
