@@ -1,0 +1,147 @@
+/* Contact page animations and styles */
+
+/* Abstract background shapes */
+.abstract-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.07;
+}
+
+.shape-1 {
+  background: linear-gradient(135deg, #4ADE80 0%, #10B981 100%);
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  right: -100px;
+  animation: floatAround 30s infinite ease-in-out;
+}
+
+.shape-2 {
+  background: linear-gradient(135deg, #10B981 0%, #0D9488 100%);
+  width: 400px;
+  height: 400px;
+  bottom: 20%;
+  left: -200px;
+  animation: floatAround 25s infinite ease-in-out reverse;
+}
+
+.shape-3 {
+  background: linear-gradient(135deg, #14B8A6 0%, #0891B2 100%);
+  width: 300px;
+  height: 300px;
+  bottom: 10%;
+  right: 10%;
+  animation: floatAround 20s infinite ease-in-out;
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(5deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(-3deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* Form animations and styling */
+.contact-form {
+  position: relative;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-input {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.form-input:focus {
+  border-color: #10B981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+/* Highlighter animation */
+.highlighter {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .05em;
+  width: 0;
+  animation:
+    highlight 1.75s 1.5s forwards,
+    step-end infinite;
+}
+
+@keyframes highlight {
+  from { width: 0% }
+  to { width: 100% }
+}
+
+/* Contact methods grid */
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-method-card {
+  transition: all 0.3s ease;
+}
+
+.contact-method-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Success message animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shape-1 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .shape-2 {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .shape-3 {
+    width: 200px;
+    height: 200px;
+  }
+} 

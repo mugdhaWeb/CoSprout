@@ -6,9 +6,12 @@ import dotenv from "dotenv";
 import cors from "cors";
 import multer from "multer";
 import path from "path";
+import cookieParser from 'cookie-parser';
+import connectDB from './config/db';
+import authRoutes from './routes/authRoutes';
+import passport from './config/passport';
 
 // Import existing routes
-import authRoutes from "./routes/auth";
 import protectedRoutes from "./routes/someProtectedRoute"; // Protected routes (authentication & role-based)
 import profileRoutes from "./routes/profile"; // User management / profile endpoints
 import threadRoutes from "./routes/Threads"; // Forum Threads endpoints
@@ -17,11 +20,17 @@ import postRoutes from "./routes/posts"; // Forum posts endpoints
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON and enable CORS
 app.use(express.json());
-app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  credentials: true
+}));
+app.use(passport.initialize());
 
 // Connect to MongoDB
 mongoose
@@ -249,7 +258,7 @@ app.use("/api/applications", applicationRouter);
 // ---------------------------------------------------------------------
 
 // Public routes: authentication endpoints
-app.use("/api/auth", authRoutes);
+app.use('/api/auth', authRoutes);
 
 // Protected routes: routes that require a valid token and proper role-based authorization
 app.use("/api/protected", protectedRoutes);
@@ -263,9 +272,21 @@ app.use("/api/threads", threadRoutes);
 // - Posts: For creating and listing posts (replies) in threads
 app.use("/api/posts", postRoutes);
 
+// Health check route
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is running' });
+});
+
+// Handle 404 routes
+app.use('*', (req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
+
 // ---------------------------------------------------------------------
 // Start the server
 // ---------------------------------------------------------------------
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+export default app;

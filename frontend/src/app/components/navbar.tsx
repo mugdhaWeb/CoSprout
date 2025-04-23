@@ -6,10 +6,7 @@ export default function Navbar() {
   
   // Function to navigate only if the current path is different from target
   const handleNavigation = (path: string) => {
-    // Get the current path
     const currentPath = window.location.pathname;
-    
-    // Only navigate if the path is different from current path
     if (currentPath !== path) {
       window.location.href = path;
     }
@@ -24,8 +21,8 @@ export default function Navbar() {
               <img className="w-auto h-8" src="/cosproutlogo.png" alt="CoSprout Logo" />
             </a>
           </div>
-            
-          <button 
+
+          <button
             type="button" 
             className="inline-flex rounded-md p-1 text-teal-600 transition-all duration-200 lg:hidden border border-teal-600 focus:bg-teal-600 focus:text-white"
             onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -44,15 +41,15 @@ export default function Navbar() {
             <a href="/team" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/team'); }}>Team</a>
             <a href="/impact" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/impact'); }}>Impact</a>
             <a href="/resources" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/resources'); }}>Resources</a>
-            <a href="#" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">Contact</a>
+            <a href="/contact" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/contact'); }}>Contact</a>
 
             <div className="w-px h-5 bg-black/20"></div>
-            <a href="#" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">Log in</a>
+            <a href="/login" className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80" onClick={(e) => { e.preventDefault(); handleNavigation('/login'); }}>Log in</a>
             <a href="/apply" className="inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold rounded-md text-teal-600 border-2 border-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200 focus:bg-teal-600 focus:text-white" onClick={(e) => { e.preventDefault(); handleNavigation('/apply'); }}>Apply Now</a>
           </div>
         </div>
       </div>
-        
+
       {showMobileMenu && (
         <div className="fixed top-0 left-0 z-50 w-64 h-screen bg-green-100 shadow-lg overflow-x-hidden overflow-y-auto flex flex-col">
           <div className="flex justify-end p-4">
@@ -71,9 +68,9 @@ export default function Navbar() {
             <a href="/team" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/team'); setShowMobileMenu(false); }}>Team</a>
             <a href="/impact" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/impact'); setShowMobileMenu(false); }}>Impact</a>
             <a href="/resources" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/resources'); setShowMobileMenu(false); }}>Resources</a>
-            <a href="#" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={() => setShowMobileMenu(false)}>Contact</a>
+            <a href="/contact" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/contact'); setShowMobileMenu(false); }}>Contact</a>
             <div className="w-full h-px bg-gray-200 my-2"></div>
-            <a href="#" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={() => setShowMobileMenu(false)}>Log in</a>
+            <a href="/login" className="w-full py-2 text-center text-lg font-semibold text-black hover:text-teal-600" onClick={(e) => { e.preventDefault(); handleNavigation('/login'); setShowMobileMenu(false); }}>Log in</a>
             <a href="/apply" className="w-full py-2 text-center text-lg font-semibold text-teal-600 border-2 border-teal-600 rounded-md hover:bg-teal-600 hover:text-white" onClick={(e) => { e.preventDefault(); handleNavigation('/apply'); setShowMobileMenu(false); }}>Apply Now</a>
           </div>
         </div>
